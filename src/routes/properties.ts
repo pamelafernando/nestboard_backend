@@ -175,7 +175,9 @@ propertiesRouter.get("/", optionalAuth, async (req, res, next) => {
         take,
         include: { roomTypes: true },
       }),
-    ]);
+    ],
+    { maxWait: 10000, timeout: 10000 }
+);
 
     const favorites = await favoritePropertyIds(
       req.user?.id,
