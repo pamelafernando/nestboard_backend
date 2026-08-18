@@ -79,6 +79,8 @@ async function createBooking(
     },
     {
       isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
+      maxWait: 10000,
+      timeout: 10000,
     },
   );
 }
@@ -149,6 +151,8 @@ export async function confirmBooking(
     },
     {
       isolationLevel: Prisma.TransactionIsolationLevel.Serializable,
+      maxWait: 10000,
+      timeout: 10000,
     },
   );
 }
@@ -159,6 +163,28 @@ export async function listMyBookings(
 ) {
   return db.booking.findMany({
     where: { tenantId },
+    orderBy: { createdAt: "desc" },
+    include: {
+      room: { include: { roomType: { include: { property: true } } } },
+    },
+  });
+}
+
+// Bookings made against properties owned by this vendor/admin.
+// Ownership runs Booking -> Room -> RoomType -> Property -> vendorId,
+// enforced entirely server-side.
+export async function listAdminBookings(
+  vendorId: string,
+  db: PrismaClient = defaultPrisma,
+) {
+  return db.booking.findMany({
+    where: {
+      room: {
+        roomType: {
+          property: { vendorId },
+        },
+      },
+    },
     orderBy: { createdAt: "desc" },
     include: {
       room: { include: { roomType: { include: { property: true } } } },

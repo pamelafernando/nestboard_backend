@@ -39,3 +39,11 @@ export const myBookings: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+
+export const adminBookings: RequestHandler = async (req, res, next) => {
+  try {
+    res.json(await svc.listAdminBookings(req.user!.id));
+  } catch (err) {
+    next(err);
+  }
+};
