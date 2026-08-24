@@ -187,6 +187,7 @@ export async function listAdminBookings(
     },
     orderBy: { createdAt: "desc" },
     include: {
+      tenant: { select: { id: true, displayName: true, email: true } },
       room: { include: { roomType: { include: { property: true } } } },
     },
   });
