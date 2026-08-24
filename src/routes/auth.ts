@@ -17,6 +17,8 @@ import argon2 from "argon2";
 import { requireRole, verifyJwt } from "../middleware/auth.js";
 import { OAuth2Client } from "google-auth-library";
 import { env } from "../lib/env.js";
+import { createClerkClient, verifyToken } from "@clerk/backend";
+
 
 export const authRouter = Router();
 
@@ -165,6 +167,52 @@ authRouter.get("/me", verifyJwt, async (req, res, next) => {
     });
     if (!user) throw Errors.notFound("User");
     res.json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+
+// Exchanges a Clerk session token for our own token pair.
+
+authRouter.post("/clerk", async (req, res, next) => {
+  try {
+    if (!env.CLERK_SECRET_KEY) {
+      throw Errors.unavailable("Clerk sign-in is not configured");
+    }
+    const clerkClient = createClerkClient({ secretKey: env.CLERK_SECRET_KEY });
+    const clerkToken = (req.body as { token?: string }).token;
+    if (!clerkToken) throw Errors.validation("Missing Clerk token");
+
+    let clerkUserId: string;
+    try {
+      const payload = await verifyToken(clerkToken, {
+        secretKey: env.CLERK_SECRET_KEY,
+      });
+      clerkUserId = payload.sub;
+    } catch (err) {
+      console.error("Clerk verifyToken failed:", err);
+      throw Errors.unauthenticated("Invalid or expired Clerk token");
+    }
+    const clerkUser = await clerkClient.users.getUser(clerkUserId);
+
+    const email = clerkUser.emailAddresses.find(
+      (e) => e.id === clerkUser.primaryEmailAddressId,
+    )?.emailAddress;
+    if (!email) throw Errors.unauthenticated("Clerk account has no email");
+
+    let user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          email,
+          displayName: clerkUser.firstName ?? email.split("@")[0]!,
+          avatarUrl: clerkUser.imageUrl ?? null,
+        },
+      });
+    }
+    res.json(await issueTokens(user));
   } catch (err) {
     next(err);
   }

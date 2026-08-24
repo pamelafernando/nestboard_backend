@@ -16,6 +16,8 @@ const envSchema = z
     // Google Sign-In: comma-separated OAuth client IDs; /auth/google is 503 until set.
     GOOGLE_CLIENT_IDS: z.string().optional(),
 
+    CLERK_SECRET_KEY: z.string().optional(),
+
     // Cloudflare R2 (required when UPLOAD_PROVIDER=r2)
     R2_ACCOUNT_ID: z.string().optional(),
     R2_ACCESS_KEY_ID: z.string().optional(),
