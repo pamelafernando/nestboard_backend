@@ -18,6 +18,7 @@ import { requireRole, verifyJwt } from "../middleware/auth.js";
 import { OAuth2Client } from "google-auth-library";
 import { env } from "../lib/env.js";
 import { createClerkClient, verifyToken } from "@clerk/backend";
+import { updateProfileSchema } from "../schemas/user.js";
 
 
 export const authRouter = Router();
@@ -171,6 +172,33 @@ authRouter.get("/me", verifyJwt, async (req, res, next) => {
     next(err);
   }
 });
+
+authRouter.patch(
+  "/me",
+  verifyJwt,
+  validateBody(updateProfileSchema),
+  async (req, res, next) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) throw Errors.unauthenticated();
+      const user = await prisma.user.update({
+        where: { id: userId },
+        data: req.body,
+        select: {
+          id: true,
+          email: true,
+          displayName: true,
+          role: true,
+          avatarUrl: true,
+          bioTag: true,
+        },
+      });
+      res.json(user);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 
 
 
