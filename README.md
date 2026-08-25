@@ -1,3 +1,13 @@
+#Links to other repos
+
+NestBoard frontend
+https://github.com/pamelafernando/nestboard_frontend
+
+Nestboard mobile
+https://github.com/pamelafernando/nestboard_mobile
+
+
+
 # NestBoard API
 
 Backend for **NestBoard**, the co-living booking platform we're building together as the capstone of the Full-Stack Product Engineering bootcamp.
