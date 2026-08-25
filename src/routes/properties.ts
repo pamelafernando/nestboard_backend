@@ -7,7 +7,7 @@ import {
   toRoomTypeDTO,
 } from "../lib/dto.js";
 import { validateBody } from "../middleware/validate.js";
-import { createPropertySchema } from "../schemas/property.js";
+import { createPropertySchema, updatePropertySchema } from "../schemas/property.js";
 import { Errors } from "../lib/errors.js";
 import { optionalAuth, requireRole, verifyJwt } from "../middleware/auth.js";
 import { Role } from "../generated/enums.js";
@@ -430,12 +430,45 @@ propertiesRouter.post(
   },
 );
 
+propertiesRouter.patch(
+  "/:id",
+  verifyJwt,
+  requireRole(Role.ADMIN),
+  validateBody(updatePropertySchema),
+  async (req, res, next) => {
+    try {
+      const userId = req.user?.id;
+      if (!userId) throw Errors.unauthenticated();
+      const existing = await prisma.property.findUnique({
+        where: { id: String(req.params.id) },
+        select: { vendorId: true },
+      });
+      if (!existing) throw Errors.notFound("Property");
+      if (existing.vendorId !== userId) throw Errors.forbidden();
+      const property = await prisma.property.update({
+        where: { id: String(req.params.id) },
+        data: req.body,
+      });
+      res.json(property);
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 propertiesRouter.delete(
   "/:id",
   verifyJwt,
   requireRole(Role.ADMIN),
   async (req, res, next) => {
     try {
+      const userId = req.user?.id;
+      if (!userId) throw Errors.unauthenticated();
+      const existing = await prisma.property.findUnique({
+        where: { id: String(req.params.id) },
+        select: { vendorId: true },
+      });
+      if (!existing) throw Errors.notFound("Property");
+      if (existing.vendorId !== userId) throw Errors.forbidden();
       await prisma.property.delete({
         where: {
           id: String(req.params.id),
