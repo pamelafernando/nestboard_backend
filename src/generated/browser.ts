@@ -52,3 +52,8 @@ export type Booking = Prisma.BookingModel
  * 
  */
 export type Favorite = Prisma.FavoriteModel
+/**
+ * Model Review
+ * 
+ */
+export type Review = Prisma.ReviewModel

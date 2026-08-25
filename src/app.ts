@@ -9,6 +9,7 @@ import helmet from "helmet";
 import cors from "cors";
 import { corsOrigins, env } from "./lib/env.js";
 import { bookingsRouter } from "./routes/bookings.js";
+import { reviewsRouter } from "./routes/reviews.js";
 import { uploadsRouter } from "./routes/uploads.js";
 import path from "node:path";
 import rateLimit from "express-rate-limit";
@@ -38,6 +39,7 @@ export function buildApp(): Express {
   app.use("/api/properties", propertiesRouter);
   app.use("/api/auth", authRouter);
   app.use("/api/bookings/", bookingsRouter);
+  app.use("/api/reviews", reviewsRouter);
   app.use("/api/uploads", uploadsRouter);
   app.use("/uploads", express.static(path.resolve(env.UPLOAD_LOCAL_DIR)));
 

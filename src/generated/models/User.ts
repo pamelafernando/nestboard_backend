@@ -210,6 +210,7 @@ export type UserWhereInput = {
   bookings?: Prisma.BookingListRelationFilter
   refreshTokens?: Prisma.RefreshTokenListRelationFilter
   favorites?: Prisma.FavoriteListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -225,6 +226,7 @@ export type UserOrderByWithRelationInput = {
   bookings?: Prisma.BookingOrderByRelationAggregateInput
   refreshTokens?: Prisma.RefreshTokenOrderByRelationAggregateInput
   favorites?: Prisma.FavoriteOrderByRelationAggregateInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -243,6 +245,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   bookings?: Prisma.BookingListRelationFilter
   refreshTokens?: Prisma.RefreshTokenListRelationFilter
   favorites?: Prisma.FavoriteListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -286,6 +289,7 @@ export type UserCreateInput = {
   bookings?: Prisma.BookingCreateNestedManyWithoutTenantInput
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -301,6 +305,7 @@ export type UserUncheckedCreateInput = {
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTenantInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -316,6 +321,7 @@ export type UserUpdateInput = {
   bookings?: Prisma.BookingUpdateManyWithoutTenantNestedInput
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -331,6 +337,7 @@ export type UserUncheckedUpdateInput = {
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutTenantNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -476,6 +483,20 @@ export type UserUpdateOneRequiredWithoutFavoritesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFavoritesInput, Prisma.UserUpdateWithoutFavoritesInput>, Prisma.UserUncheckedUpdateWithoutFavoritesInput>
 }
 
+export type UserCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.UserUpsertWithoutReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewsInput, Prisma.UserUpdateWithoutReviewsInput>, Prisma.UserUncheckedUpdateWithoutReviewsInput>
+}
+
 export type UserCreateWithoutRefreshTokensInput = {
   id?: string
   email: string
@@ -488,6 +509,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   properties?: Prisma.PropertyCreateNestedManyWithoutVendorInput
   bookings?: Prisma.BookingCreateNestedManyWithoutTenantInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -502,6 +524,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutVendorInput
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTenantInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -532,6 +555,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   properties?: Prisma.PropertyUpdateManyWithoutVendorNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutTenantNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -546,6 +570,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutVendorNestedInput
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutTenantNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPropertiesInput = {
@@ -560,6 +585,7 @@ export type UserCreateWithoutPropertiesInput = {
   bookings?: Prisma.BookingCreateNestedManyWithoutTenantInput
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPropertiesInput = {
@@ -574,6 +600,7 @@ export type UserUncheckedCreateWithoutPropertiesInput = {
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTenantInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPropertiesInput = {
@@ -604,6 +631,7 @@ export type UserUpdateWithoutPropertiesInput = {
   bookings?: Prisma.BookingUpdateManyWithoutTenantNestedInput
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPropertiesInput = {
@@ -618,6 +646,7 @@ export type UserUncheckedUpdateWithoutPropertiesInput = {
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutTenantNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBookingsInput = {
@@ -632,6 +661,7 @@ export type UserCreateWithoutBookingsInput = {
   properties?: Prisma.PropertyCreateNestedManyWithoutVendorInput
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBookingsInput = {
@@ -646,6 +676,7 @@ export type UserUncheckedCreateWithoutBookingsInput = {
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutVendorInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBookingsInput = {
@@ -676,6 +707,7 @@ export type UserUpdateWithoutBookingsInput = {
   properties?: Prisma.PropertyUpdateManyWithoutVendorNestedInput
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBookingsInput = {
@@ -690,6 +722,7 @@ export type UserUncheckedUpdateWithoutBookingsInput = {
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutVendorNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFavoritesInput = {
@@ -704,6 +737,7 @@ export type UserCreateWithoutFavoritesInput = {
   properties?: Prisma.PropertyCreateNestedManyWithoutVendorInput
   bookings?: Prisma.BookingCreateNestedManyWithoutTenantInput
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFavoritesInput = {
@@ -718,6 +752,7 @@ export type UserUncheckedCreateWithoutFavoritesInput = {
   properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutVendorInput
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTenantInput
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFavoritesInput = {
@@ -748,6 +783,7 @@ export type UserUpdateWithoutFavoritesInput = {
   properties?: Prisma.PropertyUpdateManyWithoutVendorNestedInput
   bookings?: Prisma.BookingUpdateManyWithoutTenantNestedInput
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFavoritesInput = {
@@ -762,6 +798,83 @@ export type UserUncheckedUpdateWithoutFavoritesInput = {
   properties?: Prisma.PropertyUncheckedUpdateManyWithoutVendorNestedInput
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutTenantNestedInput
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutReviewsInput = {
+  id?: string
+  email: string
+  displayName: string
+  avatarUrl?: string | null
+  bioTag?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  passwordHash?: string | null
+  properties?: Prisma.PropertyCreateNestedManyWithoutVendorInput
+  bookings?: Prisma.BookingCreateNestedManyWithoutTenantInput
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  favorites?: Prisma.FavoriteCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutReviewsInput = {
+  id?: string
+  email: string
+  displayName: string
+  avatarUrl?: string | null
+  bioTag?: string | null
+  role?: $Enums.Role
+  createdAt?: Date | string
+  passwordHash?: string | null
+  properties?: Prisma.PropertyUncheckedCreateNestedManyWithoutVendorInput
+  bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutTenantInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  favorites?: Prisma.FavoriteUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutReviewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+}
+
+export type UserUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewsInput, Prisma.UserUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewsInput, Prisma.UserUncheckedUpdateWithoutReviewsInput>
+}
+
+export type UserUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bioTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  properties?: Prisma.PropertyUpdateManyWithoutVendorNestedInput
+  bookings?: Prisma.BookingUpdateManyWithoutTenantNestedInput
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  favorites?: Prisma.FavoriteUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bioTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  properties?: Prisma.PropertyUncheckedUpdateManyWithoutVendorNestedInput
+  bookings?: Prisma.BookingUncheckedUpdateManyWithoutTenantNestedInput
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  favorites?: Prisma.FavoriteUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -774,6 +887,7 @@ export type UserCountOutputType = {
   bookings: number
   refreshTokens: number
   favorites: number
+  reviews: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -781,6 +895,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   bookings?: boolean | UserCountOutputTypeCountBookingsArgs
   refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
   favorites?: boolean | UserCountOutputTypeCountFavoritesArgs
+  reviews?: boolean | UserCountOutputTypeCountReviewsArgs
 }
 
 /**
@@ -821,6 +936,13 @@ export type UserCountOutputTypeCountFavoritesArgs<ExtArgs extends runtime.Types.
   where?: Prisma.FavoriteWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -835,6 +957,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   bookings?: boolean | Prisma.User$bookingsArgs<ExtArgs>
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   favorites?: boolean | Prisma.User$favoritesArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -877,6 +1000,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   bookings?: boolean | Prisma.User$bookingsArgs<ExtArgs>
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   favorites?: boolean | Prisma.User$favoritesArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -889,6 +1013,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     bookings: Prisma.$BookingPayload<ExtArgs>[]
     refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
     favorites: Prisma.$FavoritePayload<ExtArgs>[]
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1297,6 +1422,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   bookings<T extends Prisma.User$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   refreshTokens<T extends Prisma.User$refreshTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   favorites<T extends Prisma.User$favoritesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$favoritesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1820,6 +1946,30 @@ export type User$favoritesArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.FavoriteScalarFieldEnum | Prisma.FavoriteScalarFieldEnum[]
+}
+
+/**
+ * User.reviews
+ */
+export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**

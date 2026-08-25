@@ -57,7 +57,8 @@ export const ModelName = {
   RoomType: 'RoomType',
   Room: 'Room',
   Booking: 'Booking',
-  Favorite: 'Favorite'
+  Favorite: 'Favorite',
+  Review: 'Review'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -172,6 +173,19 @@ export const FavoriteScalarFieldEnum = {
 } as const
 
 export type FavoriteScalarFieldEnum = (typeof FavoriteScalarFieldEnum)[keyof typeof FavoriteScalarFieldEnum]
+
+
+export const ReviewScalarFieldEnum = {
+  userId: 'userId',
+  propertyId: 'propertyId',
+  bookingId: 'bookingId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
 export const SortOrder = {
