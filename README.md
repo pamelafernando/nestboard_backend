@@ -6,6 +6,8 @@ https://github.com/pamelafernando/nestboard_frontend
 Nestboard mobile
 https://github.com/pamelafernando/nestboard_mobile
 
+mobile APK
+https://github.com/pamelafernando/nestboard_mobile/releases/download/v1.0.0/app-release.apk
 
 
 # NestBoard API
